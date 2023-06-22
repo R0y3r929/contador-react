@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React CDN</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!--<h1>Hola mundo desde react</h1>-->
+        <div id="root"></div>
+        <div id="root1"></div>
+        <div id="root2"></div>
+        <div id="root3" style="border: 1px;"></div>
+            
+        <!--1ra Clase de react renderizando DOM Virtual cen ReactDOM.render-->
+            <script>
+                ReactDOM.render(React.createElement("h1", null,"Generado con React Create Element.."), 
+                    document.getElementById("root")
+                );
+            </script>
+        <!--2da Clase de react renderizando DOM Virtual con Babel     NOTA:"Las etiquetas empiezan con mayusculas"-->
+            <script type="text/babel">
+                const Lista = () => {
+                    return(
+                        <div> 
+                            <h2>Animales de Granja hecha con etiquetas Propias</h2>                  
+                            <ul>
+                                <li>Perro</li>                            
+                                <li>Gato</li>
+                                <li>Zorro</li>
+                                <li>Pato</li>
+                                <li>Gallina</li>
+                                <li>Cerdo</li>
+                            </ul>
+                        </div>
+                    );
+                };
+
+                ReactDOM.render(<Lista />, document.getElementById("root1"));
+            </script>
+        <!--3ra Clase de react Creacion de funciones dentro de elementos renderizados     NOTA:"Las etiquetas empiezan con mayusculas"--> 
+            <script type="text/babel">
+                const Contador = () => {
+                    const [numero, setNumero]=React.useState(0);/*Se establece la constante numero y se establece su estado en 0 */
+                    
+                    return(/* Se hace uso de la constante y se imprime su valor en la estructura HTML*/
+                        <div> 
+                            <h3>Contador: {numero}</h3> 
+                        </div>    
+                    );
+                };
+
+                ReactDOM.render(<Contador />, document.getElementById("root2"));
+            </script>
+        <!--4ta y 5ta Clase de react Creacion de funciones dentro de elementos modulares renderizados desde script src con captura de Eventos     NOTA:"Las etiquetas empiezan con mayusculas"-->
+            <script type="text/babel" src="./Componentes/Contando.js"></script>
+            <script type="text/babel" src="index.js"></script>
+    </body>
+</html>
